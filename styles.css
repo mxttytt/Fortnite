@@ -1,101 +1,229 @@
-/* Global Styles */
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Arial', sans-serif;
-  overflow: hidden;
-  background: black;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    overflow: hidden; /* Remove all scrollbars */
+    height: 100vh; /* Full viewport height */
+    background: radial-gradient(circle, #001133, #000000); /* Background gradient */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    flex-direction: column;
 }
 
-/* Starry Background */
-.background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(ellipse at bottom, #000, #050a20);
-  overflow: hidden;
-}
-
-/* Stars */
-.background::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: transparent;
-  background-image: 
-    radial-gradient(2px 2px at 50% 50%, white, rgba(255, 255, 255, 0) 100%),
-    radial-gradient(1px 1px at 20% 80%, white, rgba(255, 255, 255, 0) 100%),
-    radial-gradient(1.5px 1.5px at 80% 30%, white, rgba(255, 255, 255, 0) 100%);
-  animation: stars 50s linear infinite;
+/* Sky (Full Background with Stars) */
+#sky {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -3; /* Behind everything */
 }
 
 /* Shooting Stars */
 .shooting-star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  background: white;
-  box-shadow: 0 0 6px 3px white;
-  border-radius: 50%;
-  animation: shooting-star 5s linear infinite;
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: linear-gradient(45deg, white, transparent);
+    box-shadow: 0 0 10px white;
+    animation: shooting-star-animation 3s ease-in-out infinite;
 }
 
-.shooting-star:nth-child(2) {
-  animation-delay: 2s;
+@keyframes shooting-star-animation {
+    0% {
+        transform: translate(0, 0) scale(0.8);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: translate(100vw, 100vh) scale(1.5);
+        opacity: 0;
+    }
 }
 
-.shooting-star:nth-child(3) {
-  animation-delay: 4s;
+
+
+/* Keyframes for Random Mountain Animation */
+@keyframes mountain-animation {
+    0% {
+        transform: translateX(0) scaleY(1);
+    }
+    100% {
+        transform: translateX(100vw) scaleY(1);
+    }
 }
 
-@keyframes shooting-star {
-  0% {
-    opacity: 0;
-    transform: translate(200px, -100px);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(-300px, 200px);
-  }
-  100% {
-    opacity: 0;
-    transform: translate(-500px, 400px);
-  }
+/* Centered Text */
+.text-center {
+    position: absolute;
+    text-align: center;
+    z-index: 10;
+    top: 10%;
+    width: 100%;
 }
 
-/* Starry Motion */
-@keyframes stars {
-  0% {
-    transform: translate(0, 0);
-  }
-  100% {
-    transform: translate(-200px, -100px);
-  }
+.text-center h1 {
+    font-size: 2.5rem;
+    text-shadow: 0px 0px 5px #ffffff66, 0px 0px 10px #4d5052;
+    color: white;
+    animation: glow 2s infinite alternate;
 }
 
-/* Centered Content */
-.content {
-  position: relative;
-  text-align: center;
-  color: white;
-  z-index: 10;
+.text-center p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: white;
+    text-shadow: 0px 0px 5px #ffffff66, 0px 0px 10px #4d5052;
 }
 
-.content h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
+@keyframes glow {
+    0% { text-shadow: 0px 0px 5px #ffffff66, 0px 0px 10px #6a6c6d; }
+    100% { text-shadow: 0px 0px 10px #ffffff66, 0px 0px 15px #4d5052; }
 }
 
-.login-button {
-  background-color: #007bff;
-  color: white;
-  text-decoration: none;
-  padding: 15px 30px;
-  border
+
+button {
+    margin-top: 20px;
+    padding: 15px 20px;
+    background-color: #1c1d1d;
+    border: whitesmoke;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 50px; /* Increased for fully rounded corners */
+    box-shadow: 0px 0px 10px rgba(245, 245, 245, 0.5);
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0a0a0a;
+}
+
+/* Tab Menu Adjustments */
+.tab {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    background-color: #1c1d1d;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: 2px solid #ffffff;
+}
+
+.tab:hover {
+    background-color: #0f0f0f;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    animation: fadeIn 2.0s ease;
+  
+    width: 200px;
+    border: 2px solid #ffffff;
+}
+
+.tab-content a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 5px 0;
+    display: block;
+
+    padding: 5px 0;
+    border-bottom: 1px solid #fafafa;
+}
+
+.tab-content a:hover {
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Info Box Styling */
+.fortnite-info-box {
+    position: absolute;
+    bottom: 10%; /* Moved up more from the bottom */
+    padding: 20px;
+    background-color: black; /* Pure black inside the box */
+    border-radius: 50px;
+    box-shadow: 0px 0px 11px 3px rgba(255, 255, 255, 0.5); /* Slight white glow effect */
+    color: white;
+    text-align: center;
+    z-index: 2; /* Above mountains and stars */
+    font-size: 1rem;
+    max-width: 350px;
+    width: 100%;
+    height: auto;
+    max-height: 50vh; /* Longer boxes, more vertical space */
+    overflow-y: disable; /* Allow scroll if content is too long */
+}
+
+/* Bottom Positioning for Info Boxes */
+.fortnite-info-left {
+    bottom: 15%;
+    left: 5%;
+}
+
+.fortnite-info-middle {
+    left: 50%;
+    bottom: 20%;
+    transform: translateX(-50%);
+}
+
+.fortnite-info-right {
+    bottom: 15%;
+    right: 5%;
+}
+
+/* Responsive Design for Mobile */
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .fortnite-info-box {
+        width: 80%; /* Adjust width for smaller screens */
+        max-width: none;
+        font-size: 0.9rem;
+        bottom: 10%; /* Slightly higher on mobile */
+    }
+
+    .text-center h1 {
+        font-size: 2rem; /* Smaller text on mobile */
+    }
+
+    .text-center p {
+        font-size: 1rem; /* Smaller text on mobile */
+    }
+
+    .tab {
+        font-size: 1.2rem; /* Adjust tab font size */
+        padding: 8px;
+    }
+}
