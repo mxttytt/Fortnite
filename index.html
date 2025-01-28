@@ -3,20 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Your Own Fortnite Lobbybot</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Create Your Own LobbyBot</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="background">
-    <!-- Shooting stars -->
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
-    <div class="shooting-star"></div>
+  <div id="sky"></div>
+  <div class="text-center">
+    <h1>Create Your Own LobbyBot!</h1>
+    <p>Use Code: MxttyTT</p>
+    <button id="createButton">Create Your LobbyBot</button>
   </div>
 
-  <div class="content">
-    <h1>Create Your Own Fortnite Lobbybot</h1>
-    <a href="/login" class="login-button">Login with Discord</a>
+  <!-- Tab for Open Menu -->
+  <div class="tab" id="openTab">
+    <span onclick="toggleTab()">Open</span>
+    <div class="tab-content" id="tabContent">
+      <a id="itemShopLink" href="item-shop.html">Item Shop</a>
+    </div>
+  </div>
+
+  <!-- Info Boxes: Three Positioned at Bottom (Left, Middle, Right) -->
+  <div class="fortnite-info-box fortnite-info-left">
+    <h2>About Lobbybot</h2>
+    <p>
+      You can use our lobbybot system to see release/unleased<br>
+      cosmetics are in the game
+    </p>
+  </div>
+
+  <div class="fortnite-info-box fortnite-info-middle">
+    <h2>Steps</h2>
+    <p>
+      1. Join our discord server, Click Create<br>
+      
+
+
+   
+    </p>
+  </div>
+
+  <div class="fortnite-info-box fortnite-info-right">
+    <h2>About Lobbybot</h2>
+    <p>
+        Using our lobbybot system or any other lobbybot system can't give/gift you any items nor get you ban<br>
+      
+    </p>
   </div>
 
   <script src="script.js"></script>
